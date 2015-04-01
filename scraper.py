@@ -4,14 +4,8 @@
 from bs4 import BeautifulSoup
 import urllib
 import urllib2
-import socks
-import socket
 from cookielib import CookieJar
 import csv
-
-
-socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS4, "127.0.0.1", 9050)
-socket.socket = socks.socksocket
 
 cj = CookieJar()
 opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
@@ -20,7 +14,6 @@ domain = "http://www.esrb.org/ratings/search.jsp"
 
 r1 = opener.open(domain)
 rs1 = BeautifulSoup(r1.read(), 'html.parser')
-
 
 def generateParams():
 
